@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #111111;
+  --paper: #ffffff;
+  --paper-warm: #f6f4ef;
+  --ink: #111111;
+  --graphite: #242424;
+  --muted: #6e6a63;
+  --line: #d9d5cc;
+  --grid: rgba(17, 17, 17, 0.075);
+  --action: #ffd21e;
+  --action-strong: #f3b700;
+  --danger: #d52b1e;
+  --steel: #29323a;
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}
+
+body[data-mobile-menu-open="true"] {
+  overflow: hidden;
+}
+
+body[data-mobile-menu-open="true"] .mobile-action-dock {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+}
+
+a {
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--action);
+  color: var(--ink);
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.poster-grid {
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

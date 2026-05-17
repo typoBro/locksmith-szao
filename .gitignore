@@ -1,0 +1,30 @@
+# dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# environment
+.env
+.env.*
+!.env.example
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# local tooling
+.vercel/
+.playwright-mcp/
+
+# system files
+.DS_Store
+
+# temporary QA artifacts
+mobile-square-bar.png
+mobile-app-tabbar.png
