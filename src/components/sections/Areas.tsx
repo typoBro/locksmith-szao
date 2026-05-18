@@ -1,39 +1,52 @@
-import { ExternalLink, MapPin, MessageCircle, Phone } from "lucide-react";
+import Image from "next/image";
+import { ExternalLink, MapPin, Phone } from "lucide-react";
+import { YandexDistrictMap } from "@/components/maps/YandexDistrictMap";
 import { ButtonLink } from "@/components/ui/Button";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { serviceArea } from "@/data/areas";
+import { areas, serviceArea } from "@/data/areas";
 import { siteConfig } from "@/data/site";
 
 function AreaMap() {
   return (
-    <div className="relative overflow-hidden border border-[var(--line)] bg-[var(--paper-warm)] p-3 md:p-4">
-      <div className="relative aspect-[4/3] min-h-[260px] overflow-hidden bg-white md:aspect-[16/10]">
-        <iframe
-          src={serviceArea.yandexMapSrc}
-          title="Яндекс-карта зоны выезда по СЗАО Москвы"
-          className="h-full w-full border-0 grayscale-[0.15]"
-          loading="lazy"
-          allowFullScreen
-          referrerPolicy="no-referrer-when-downgrade"
-        />
-
-        <div className="pointer-events-none absolute left-3 top-3 inline-flex items-center gap-2 border border-[var(--line)] bg-white/95 px-3 py-2 text-xs font-extrabold text-[var(--ink)] shadow-[0_8px_28px_rgba(17,17,17,0.08)] backdrop-blur">
-          <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-          Москва · СЗАО
+    <div className="order-2 min-w-0 border border-[var(--line)] bg-[var(--paper)] p-4 sm:p-5 lg:order-1">
+      <div className="flex items-start justify-between gap-4 border-b border-[var(--line)] pb-5">
+        <div className="min-w-0">
+          <div className="inline-flex items-center gap-2 border border-[var(--line)] bg-white px-3 py-2 text-xs font-extrabold text-[var(--ink)]">
+            <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+            Москва · СЗАО
+          </div>
+          <p className="mt-4 max-w-lg break-words text-sm font-semibold leading-6 text-[var(--muted)]">
+            {serviceArea.description}
+          </p>
         </div>
+        <p className="hidden font-display text-5xl font-bold leading-none text-[var(--ink)] md:block">СЗАО</p>
       </div>
 
-      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-xs font-semibold leading-5 text-[var(--muted)]">{serviceArea.mapDisclaimer}</p>
+      <div className="mt-5 min-w-0 overflow-hidden border border-[var(--ink)] bg-white">
+        <YandexDistrictMap />
+      </div>
+
+      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <p className="break-words text-xs font-semibold leading-5 text-[var(--muted)]">{serviceArea.mapDisclaimer}</p>
         <div className="grid gap-2 sm:flex sm:shrink-0">
           <ButtonLink href={serviceArea.yandexMapHref} variant="secondary" size="sm" aria-label="Открыть зону в Яндекс Картах">
             <ExternalLink className="h-4 w-4" aria-hidden="true" />
             Яндекс Карты
           </ButtonLink>
-          <ButtonLink href={serviceArea.checkAreaHref} size="sm" aria-label="Проверить район в WhatsApp">
-            <MessageCircle className="h-4 w-4" aria-hidden="true" />
-            Проверить район
-          </ButtonLink>
+        </div>
+      </div>
+
+      <div className="mt-5 border-t border-[var(--line)] pt-5">
+        <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--muted)]">Районы выезда</p>
+        <div className="grid min-w-0 grid-cols-2 gap-2 sm:grid-cols-3">
+          {areas.slice(0, 11).map((area) => (
+            <span
+              key={area}
+              className="min-w-0 break-words border border-[var(--line)] bg-white px-3 py-3 text-sm font-bold leading-5 text-[var(--graphite)]"
+            >
+              {area}
+            </span>
+          ))}
         </div>
       </div>
     </div>
@@ -42,24 +55,39 @@ function AreaMap() {
 
 function ContactCard() {
   const rows = [
-    ["Статус", siteConfig.statusLabel],
-    ["Зона", siteConfig.address],
-    ["Режим", siteConfig.hours],
+    ["Avito", `${siteConfig.masterRating} · ${siteConfig.masterReviews} · ${siteConfig.masterSince}`],
+    ["Локация", siteConfig.avitoLocation],
+    ["Метро", siteConfig.metro.join(" · ")],
   ];
 
   return (
-    <aside className="border-y border-[var(--ink)] py-5">
-      <p className="font-display text-3xl font-bold leading-none text-[var(--ink)]">{siteConfig.masterLabel}</p>
-      <p className="mt-3 text-sm font-semibold leading-6 text-[var(--muted)]">{siteConfig.contactNote}</p>
+    <aside className="order-1 border-y border-[var(--ink)] py-5 lg:order-2">
+      <div className="relative mb-5 aspect-[4/3] overflow-hidden border border-[var(--line)] bg-white sm:aspect-[16/9] lg:aspect-[4/3]">
+        <Image
+          src={siteConfig.profileImage}
+          alt="Сергей - мастер по замкам из Avito"
+          fill
+          className="object-cover"
+          sizes="(max-width: 1024px) 100vw, 38vw"
+        />
+      </div>
+      <p className="font-display text-3xl font-bold leading-none text-[var(--ink)]">{siteConfig.avitoProfile}</p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        <span className="border border-[var(--ink)] bg-[var(--action)] px-2.5 py-1 text-xs font-extrabold text-[var(--ink)]">
+          {siteConfig.masterRating} · {siteConfig.masterReviews}
+        </span>
+        <span className="border border-[var(--line)] bg-white px-2.5 py-1 text-xs font-extrabold text-[var(--muted)]">
+          {siteConfig.masterStatus}
+        </span>
+      </div>
+      <p className="mt-3 text-sm font-semibold leading-6 text-[var(--muted)]">
+        Выездной мастер из Avito. Работает без офиса и приёма клиентов, заявку удобнее уточнять по телефону.
+      </p>
 
-      <div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
+      <div className="mt-5 hidden md:grid">
         <ButtonLink href={siteConfig.phoneHref} size="md" className="w-full">
           <Phone className="h-4 w-4" aria-hidden="true" />
           {siteConfig.phone}
-        </ButtonLink>
-        <ButtonLink href={siteConfig.whatsappHref} variant="secondary" size="md" className="w-full">
-          <MessageCircle className="h-4 w-4" aria-hidden="true" />
-          WhatsApp
         </ButtonLink>
       </div>
 
@@ -82,17 +110,12 @@ export function Areas() {
         <SectionHeader
           label="Зона"
           title={serviceArea.title}
-          description="Карта и контакты помогают быстро понять, есть ли смысл звонить именно этому мастеру."
+          description="Карта показывает СЗАО и соседние районы, куда удобно уточнить выезд."
         />
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[1.1fr_.9fr]">
           <AreaMap />
           <ContactCard />
-        </div>
-
-        <div className="mt-6 border-t border-[var(--line)] pt-4">
-          <p className="text-sm font-extrabold text-[var(--ink)]">Районы выезда</p>
-          <p className="mt-2 text-sm font-semibold leading-6 text-[var(--muted)]">{serviceArea.primary.join(", ")} и соседние районы.</p>
         </div>
       </div>
     </section>

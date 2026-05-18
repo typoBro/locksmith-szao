@@ -1,6 +1,6 @@
 "use client";
 
-import { MessageCircle, Phone, X } from "lucide-react";
+import { Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { navItems, siteConfig } from "@/data/site";
 import { ButtonLink } from "@/components/ui/Button";
@@ -8,7 +8,6 @@ import { ButtonLink } from "@/components/ui/Button";
 const mobileNavItems = [
   { label: "Услуги", href: "#services", description: "дверь, авто, гараж, сейф" },
   { label: "Зона выезда", href: "#areas", description: "районы СЗАО и проверка адреса" },
-  { label: "Выезды", href: "#cases", description: "последние ситуации без отзывов-заглушек" },
   { label: "FAQ", href: "#faq", description: "цена, документы, повреждения" },
 ];
 
@@ -60,7 +59,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className="grid h-10 w-12 place-items-center border border-[var(--line)] bg-white text-2xl font-extrabold leading-none text-[var(--ink)] md:hidden"
+            className="grid h-12 w-12 place-items-center border border-[var(--line)] bg-white text-2xl font-extrabold leading-none text-[var(--ink)] md:hidden"
             aria-label="Открыть меню"
             aria-expanded={isOpen}
           >
@@ -83,7 +82,7 @@ export function Header() {
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="grid h-10 w-10 place-items-center border border-[var(--line)] text-[var(--ink)]"
+                className="grid h-12 w-12 place-items-center border border-[var(--line)] text-[var(--ink)]"
                 aria-label="Закрыть меню"
               >
                 <X className="h-5 w-5" aria-hidden="true" />
@@ -114,13 +113,6 @@ export function Header() {
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
                 {siteConfig.phone}
-              </a>
-              <a
-                href={siteConfig.whatsappHref}
-                className="inline-flex min-h-12 items-center justify-center gap-2 border border-[var(--line)] px-4 text-sm font-extrabold text-[var(--ink)]"
-              >
-                <MessageCircle className="h-4 w-4" aria-hidden="true" />
-                WhatsApp
               </a>
             </div>
           </div>

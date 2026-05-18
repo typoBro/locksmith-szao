@@ -28,3 +28,5 @@ pnpm-debug.log*
 # temporary QA artifacts
 mobile-square-bar.png
 mobile-app-tabbar.png
+screenshots/
+.vercel

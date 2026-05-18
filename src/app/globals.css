@@ -2,21 +2,22 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #f4f1ea;
   --foreground: #111111;
-  --paper: #ffffff;
-  --paper-warm: #f6f4ef;
+  --paper: #fffefa;
+  --paper-warm: #f4f1ea;
   --ink: #111111;
   --graphite: #242424;
-  --muted: #6e6a63;
-  --line: #d9d5cc;
-  --grid: rgba(17, 17, 17, 0.075);
-  --action: #ffd21e;
-  --action-strong: #f3b700;
+  --muted: #6d695f;
+  --line: #d8d2c7;
+  --grid: rgba(17, 17, 17, 0.035);
+  --action: #ffd21f;
+  --action-strong: #f4c400;
   --danger: #d52b1e;
   --steel: #29323a;
   --font-display: "Oswald", "Arial Narrow", sans-serif;
   --font-body: "Manrope", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mobile-action-bar-space: calc(5.35rem + env(safe-area-inset-bottom));
 }
 
 * {
@@ -68,6 +69,29 @@ a {
     linear-gradient(to right, var(--grid) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
   background-size: 64px 64px;
+}
+
+.szao-map-label {
+  width: max-content;
+  max-width: 148px;
+  border: 1px solid var(--ink);
+  background: rgba(255, 254, 250, 0.94);
+  box-shadow: 0 8px 18px rgba(17, 17, 17, 0.14);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.1;
+  padding: 6px 8px;
+  pointer-events: auto;
+  text-align: center;
+  white-space: normal;
+}
+
+@media (max-width: 767px) {
+  body {
+    padding-bottom: var(--mobile-action-bar-space);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

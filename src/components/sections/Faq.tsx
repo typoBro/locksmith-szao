@@ -2,7 +2,6 @@
 
 import { useId, useState } from "react";
 import { faq } from "@/data/faq";
-import { siteConfig } from "@/data/site";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export function Faq() {
@@ -15,8 +14,8 @@ export function Faq() {
         <div>
           <SectionHeader
             label="FAQ"
-            title="Право доступа и FAQ"
-            description="Работа начинается только после подтверждения, что объект ваш или вы действуете законно."
+            title="Частые вопросы"
+            description="Цена, документы, ночной выезд и аккуратное открытие."
             className="lg:block"
           />
 
@@ -56,20 +55,6 @@ export function Faq() {
             })}
           </div>
         </div>
-
-        <aside id="requisites" className="scroll-mt-24">
-          <div className="border-y border-[var(--line)] py-5">
-            <p className="text-sm font-extrabold text-[var(--ink)]">Данные исполнителя будут добавлены перед публикацией</p>
-            <dl className="mt-4 divide-y divide-[var(--line)]">
-              {siteConfig.requisites.slice(1).map(([label, value]) => (
-                <div key={label} className="grid gap-1 py-3 sm:grid-cols-[132px_1fr]">
-                  <dt className="text-xs font-bold uppercase tracking-[0.12em] text-[var(--muted)]">{label}</dt>
-                  <dd className="text-sm font-bold text-[var(--graphite)]">{value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </aside>
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import { MessageCircle, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 import { siteConfig } from "@/data/site";
 
@@ -9,17 +9,13 @@ export function FinalCta() {
         <div>
           <h2 className="font-display text-4xl font-bold leading-tight md:text-5xl">Нужно открыть замок?</h2>
           <p className="mt-2 max-w-2xl text-base leading-7 text-white/65">
-            Опишите ситуацию: мастер назовёт ориентир до выезда.
+            Позвоните Сергею: мастер уточнит ситуацию и ориентир по цене.
           </p>
         </div>
-        <div className="hidden flex-col gap-3 sm:flex-row md:flex md:shrink-0">
+        <div className="hidden md:flex md:shrink-0">
           <ButtonLink href={siteConfig.phoneHref} size="lg">
             <Phone className="h-5 w-5" aria-hidden="true" />
             Позвонить мастеру
-          </ButtonLink>
-          <ButtonLink href={siteConfig.whatsappHref} variant="secondary" size="lg">
-            <MessageCircle className="h-5 w-5" aria-hidden="true" />
-            WhatsApp
           </ButtonLink>
         </div>
       </div>
