@@ -26,7 +26,7 @@ export function Hero() {
 
           <motion.h1
             className="font-display max-w-4xl text-balance text-[clamp(2rem,9.2vw,3.05rem)] font-bold uppercase leading-[0.98] text-[var(--ink)] sm:text-6xl lg:text-[clamp(4rem,6.2vw,4.85rem)] lg:leading-[0.94]"
-            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0 : motionDurations.heroText, delay: 0.08, ease: smoothEase }}
           >
@@ -35,7 +35,7 @@ export function Hero() {
 
           <motion.p
             className="mt-4 max-w-2xl text-[15px] font-medium leading-6 text-[var(--graphite)] sm:text-lg lg:mt-5 lg:text-xl lg:leading-8"
-            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0 : motionDurations.heroText, delay: 0.12, ease: smoothEase }}
           >
@@ -44,7 +44,7 @@ export function Hero() {
 
           <motion.div
             className="mt-5 grid min-w-0 grid-cols-1 gap-2 lg:mt-7 lg:flex lg:flex-row lg:items-center"
-            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0 : motionDurations.heroText, delay: 0.16, ease: smoothEase }}
           >
@@ -74,7 +74,7 @@ export function Hero() {
 
           <motion.ul
             className="mt-4 hidden grid-cols-3 gap-1.5 text-[11px] font-extrabold leading-4 text-[var(--ink)] lg:mt-4 lg:grid lg:gap-2 lg:text-sm lg:leading-5"
-            initial={reduceMotion ? false : "hidden"}
+            initial={false}
             animate="visible"
             variants={{
               hidden: {},
@@ -98,7 +98,7 @@ export function Hero() {
 
           <motion.p
             className="mt-3 text-center text-[12px] font-extrabold leading-5 text-[var(--muted)] lg:hidden"
-            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0 : motionDurations.heroText, delay: 0.2, ease: smoothEase }}
           >

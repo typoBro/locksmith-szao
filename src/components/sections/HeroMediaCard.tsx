@@ -12,7 +12,7 @@ export function HeroMediaCard() {
   return (
     <motion.figure
       className="relative isolate mb-5 overflow-hidden rounded-[28px] border border-[var(--line)] bg-[var(--ink)] shadow-[var(--surface-shadow)] lg:hidden"
-      initial={reduceMotion ? false : { opacity: 0, scale: 0.985 }}
+      initial={false}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: reduceMotion ? 0 : motionDurations.heroImage, ease: smoothEase }}
     >
@@ -33,7 +33,7 @@ export function HeroMediaCard() {
       <figcaption className="absolute inset-x-0 bottom-0 z-10 p-4 text-white">
         <motion.div
           className="mb-3 flex flex-wrap gap-1.5"
-          initial={reduceMotion ? false : "hidden"}
+          initial={false}
           animate="visible"
           variants={{
             hidden: {},

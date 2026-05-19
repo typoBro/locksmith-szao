@@ -22,7 +22,7 @@ export const siteConfig = {
   heroImage: "/images/avito/master-photo.jpg",
   profileImage: "/images/avito/listing-main.jpg",
   url: "https://locksmith-szao-niat.vercel.app",
-  // TODO: заменить на реальный номер мастера перед публикацией.
+  // TODO: заменить на реальный номер мастера.
   phone: "",
   phoneHref: "tel:+79990000000",
   phoneLabel: "Позвонить мастеру",

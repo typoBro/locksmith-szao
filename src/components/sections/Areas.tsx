@@ -67,7 +67,7 @@ function AreaMap({ isMapVisible, onShowMap }: { isMapVisible: boolean; onShowMap
                 reachGoal(siteConfig.metrikaGoalMap);
                 onShowMap();
               }}
-              className="mt-3 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-[16px] border border-[var(--line)] bg-transparent px-4 text-sm font-extrabold text-[var(--muted)] transition hover:bg-white active:translate-y-px active:scale-[0.99] md:min-h-12"
+              className="mt-3 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[16px] border border-[var(--line)] bg-transparent px-4 text-sm font-extrabold text-[var(--muted)] transition hover:bg-white active:translate-y-px active:scale-[0.99]"
             >
               <Map className="h-4 w-4" aria-hidden="true" />
               {serviceArea.showMapLabel}

@@ -66,7 +66,7 @@ export function CasePhotoSwap() {
                   loading={index === 0 ? "eager" : "lazy"}
                 />
                 <figcaption className="absolute bottom-3 left-3 bg-[var(--action)] px-3 py-2 text-xs font-extrabold text-[var(--ink)]">
-                  Фото из Avito · {photo.label}
+                  Фото с выезда · {photo.label}
                 </figcaption>
               </motion.figure>
             );

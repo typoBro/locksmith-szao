@@ -6,7 +6,6 @@ import { FinalCta } from "@/components/sections/FinalCta";
 import { Hero } from "@/components/sections/Hero";
 import { Pricing } from "@/components/sections/Pricing";
 import { Services } from "@/components/sections/Services";
-import { Trust } from "@/components/sections/Trust";
 import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { FaqJsonLd } from "@/components/seo/FaqJsonLd";
 import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
@@ -17,7 +16,6 @@ export default function Home() {
       <main>
         <Hero />
         <AvitoProfile />
-        <Trust />
         <Services />
         <Pricing />
         <Cases />

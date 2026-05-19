@@ -5,8 +5,8 @@ export const heroContent = {
   title: "Аварийное вскрытие замков в СЗАО",
   description: "Сергей открывает двери, авто, гаражи и сейфы. Цена и право доступа — до начала работы.",
   primaryCta: "Позвонить мастеру",
-  secondaryCta: "Смотреть Avito",
-  mediaChips: [`${siteConfig.proof.rating} на Avito`, "СЗАО"],
+  secondaryCta: "Профиль Avito",
+  mediaChips: [`${siteConfig.proof.rating} рейтинг`, "СЗАО"],
   mediaCaption: "Фото с выезда",
   trustLine: `${siteConfig.proof.rating} на Avito · ${siteConfig.proof.reviews} · ${siteConfig.proof.since.replace("на Avito ", "")}`,
   trustItems: ["цена до начала", "доступ проверяем", "выезд по СЗАО"],
@@ -15,7 +15,7 @@ export const heroContent = {
 export const servicesContent = {
   label: "Услуги",
   title: "Что открыть",
-  description: "Скажите, что нужно открыть — цену уточнят по телефону.",
+  description: "Скажите, что нужно открыть. Сергей уточнит цену по телефону.",
   fullListLabel: "Показать полный список работ",
 };
 
@@ -35,7 +35,7 @@ export const avitoProfileContent = {
   label: "Профиль Avito",
   title: "Сергей — мастер по замкам",
   status: "Частный исполнитель с Avito",
-  description: "Выезд по СЗАО. Цену Сергей называет до работы.",
+  description: "Сергей выезжает по СЗАО. Детали и цену уточняет по телефону.",
   imageAlt: "Сергей - мастер по замкам из Avito",
   callCta: "Позвонить",
   avitoCta: "Профиль на Avito",
