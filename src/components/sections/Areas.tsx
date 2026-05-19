@@ -1,121 +1,94 @@
-import Image from "next/image";
-import { ExternalLink, MapPin, Phone } from "lucide-react";
+"use client";
+
+import { ExternalLink, Map, Phone } from "lucide-react";
+import { useState } from "react";
 import { YandexDistrictMap } from "@/components/maps/YandexDistrictMap";
 import { ButtonLink } from "@/components/ui/Button";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { areasContent } from "@/data/content";
 import { areas, serviceArea } from "@/data/areas";
 import { siteConfig } from "@/data/site";
+import { reachGoal } from "@/lib/analytics";
 
-function AreaMap() {
+function AreaMap({ isMapVisible, onShowMap }: { isMapVisible: boolean; onShowMap: () => void }) {
   return (
-    <div className="order-2 min-w-0 border border-[var(--line)] bg-[var(--paper)] p-4 sm:p-5 lg:order-1">
-      <div className="flex items-start justify-between gap-4 border-b border-[var(--line)] pb-5">
-        <div className="min-w-0">
-          <div className="inline-flex items-center gap-2 border border-[var(--line)] bg-white px-3 py-2 text-xs font-extrabold text-[var(--ink)]">
-            <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-            Москва · СЗАО
-          </div>
-          <p className="mt-4 max-w-lg break-words text-sm font-semibold leading-6 text-[var(--muted)]">
-            {serviceArea.description}
-          </p>
-        </div>
-        <p className="hidden font-display text-5xl font-bold leading-none text-[var(--ink)] md:block">СЗАО</p>
-      </div>
-
-      <div className="mt-5 min-w-0 overflow-hidden border border-[var(--ink)] bg-white">
-        <YandexDistrictMap />
-      </div>
-
-      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="break-words text-xs font-semibold leading-5 text-[var(--muted)]">{serviceArea.mapDisclaimer}</p>
-        <div className="grid gap-2 sm:flex sm:shrink-0">
-          <ButtonLink href={serviceArea.yandexMapHref} variant="secondary" size="sm" aria-label="Открыть зону в Яндекс Картах">
-            <ExternalLink className="h-4 w-4" aria-hidden="true" />
-            Яндекс Карты
-          </ButtonLink>
-        </div>
-      </div>
-
-      <div className="mt-5 border-t border-[var(--line)] pt-5">
-        <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--muted)]">Районы выезда</p>
-        <div className="grid min-w-0 grid-cols-2 gap-2 sm:grid-cols-3">
-          {areas.slice(0, 11).map((area) => (
+    <div className="min-w-0 border border-[var(--line)] bg-[var(--paper)] p-3 sm:p-5">
+      <div>
+        <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--muted)]">{areasContent.districtsLabel}</p>
+        <div className="flex min-w-0 flex-wrap gap-1.5 md:gap-2">
+          {areas.map((area) => (
             <span
               key={area}
-              className="min-w-0 break-words border border-[var(--line)] bg-white px-3 py-3 text-sm font-bold leading-5 text-[var(--graphite)]"
+              className="min-w-0 break-words border border-[var(--line)] bg-white px-2.5 py-1.5 text-[13px] font-bold leading-5 text-[var(--graphite)] md:px-3 md:py-2 md:text-sm"
             >
               {area}
             </span>
           ))}
         </div>
       </div>
+
+      <div className="mt-4 grid gap-2 md:flex md:flex-wrap">
+        <ButtonLink href={siteConfig.phoneHref} size="sm" onClick={() => reachGoal(siteConfig.metrikaGoalCall)}>
+          <Phone className="h-4 w-4" aria-hidden="true" />
+          {serviceArea.checkAreaPhoneLabel}
+        </ButtonLink>
+        <ButtonLink
+          href={serviceArea.yandexMapHref}
+          variant="secondary"
+          size="sm"
+          aria-label={areasContent.mapAriaLabel}
+          onClick={() => reachGoal(siteConfig.metrikaGoalMap)}
+        >
+          <ExternalLink className="h-4 w-4" aria-hidden="true" />
+          {areasContent.yandexMapsButton}
+        </ButtonLink>
+        {!isMapVisible ? (
+          <button
+            type="button"
+            onClick={() => {
+              reachGoal(siteConfig.metrikaGoalMap);
+              onShowMap();
+            }}
+            className="inline-flex min-h-12 items-center justify-center gap-2 border border-[var(--ink)] bg-[var(--ink)] px-4 text-sm font-bold text-white transition active:translate-y-px"
+          >
+            <Map className="h-4 w-4" aria-hidden="true" />
+            {serviceArea.showMapLabel}
+          </button>
+        ) : null}
+      </div>
+
+      <div className="mt-4 min-w-0 overflow-hidden border border-[var(--ink)] bg-white">
+        {isMapVisible ? (
+          <div className="max-h-[320px] overflow-hidden md:max-h-none">
+            <YandexDistrictMap />
+          </div>
+        ) : (
+          <div className="grid min-h-[128px] place-items-center bg-[var(--paper-warm)] px-4 text-center md:min-h-[260px] md:px-5">
+            <div>
+              <p className="font-display text-2xl font-bold leading-none text-[var(--ink)] md:text-3xl">{areasContent.mapPreviewTitle}</p>
+              <p className="mt-2 max-w-lg text-xs font-semibold leading-5 text-[var(--muted)] md:mt-3 md:text-sm md:leading-6">{areasContent.mapPreviewDescription}</p>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
 
-function ContactCard() {
-  const rows = [
-    ["Avito", `${siteConfig.masterRating} · ${siteConfig.masterReviews} · ${siteConfig.masterSince}`],
-    ["Локация", siteConfig.avitoLocation],
-    ["Метро", siteConfig.metro.join(" · ")],
-  ];
-
-  return (
-    <aside className="order-1 border-y border-[var(--ink)] py-5 lg:order-2">
-      <div className="relative mb-5 aspect-[4/3] overflow-hidden border border-[var(--line)] bg-white sm:aspect-[16/9] lg:aspect-[4/3]">
-        <Image
-          src={siteConfig.profileImage}
-          alt="Сергей - мастер по замкам из Avito"
-          fill
-          className="object-cover"
-          sizes="(max-width: 1024px) 100vw, 38vw"
-        />
-      </div>
-      <p className="font-display text-3xl font-bold leading-none text-[var(--ink)]">{siteConfig.avitoProfile}</p>
-      <div className="mt-3 flex flex-wrap gap-2">
-        <span className="border border-[var(--ink)] bg-[var(--action)] px-2.5 py-1 text-xs font-extrabold text-[var(--ink)]">
-          {siteConfig.masterRating} · {siteConfig.masterReviews}
-        </span>
-        <span className="border border-[var(--line)] bg-white px-2.5 py-1 text-xs font-extrabold text-[var(--muted)]">
-          {siteConfig.masterStatus}
-        </span>
-      </div>
-      <p className="mt-3 text-sm font-semibold leading-6 text-[var(--muted)]">
-        Выездной мастер из Avito. Работает без офиса и приёма клиентов, заявку удобнее уточнять по телефону.
-      </p>
-
-      <div className="mt-5 hidden md:grid">
-        <ButtonLink href={siteConfig.phoneHref} size="md" className="w-full">
-          <Phone className="h-4 w-4" aria-hidden="true" />
-          {siteConfig.phone}
-        </ButtonLink>
-      </div>
-
-      <dl className="mt-5 divide-y divide-[var(--line)]">
-        {rows.map(([label, value]) => (
-          <div key={label} className="grid gap-1 py-3 sm:grid-cols-[108px_1fr]">
-            <dt className="text-xs font-bold uppercase text-[var(--muted)]">{label}</dt>
-            <dd className="text-sm font-bold leading-5 text-[var(--graphite)]">{value}</dd>
-          </div>
-        ))}
-      </dl>
-    </aside>
-  );
-}
-
 export function Areas() {
+  const [isMapVisible, setIsMapVisible] = useState(false);
+
   return (
     <section id="areas" className="bg-white py-12 md:py-16">
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          label="Зона"
+          label={areasContent.label}
           title={serviceArea.title}
-          description="Карта показывает СЗАО и соседние районы, куда удобно уточнить выезд."
+          description={areasContent.description}
         />
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-[1.1fr_.9fr]">
-          <AreaMap />
-          <ContactCard />
+        <div className="mt-7 md:mt-8">
+          <AreaMap isMapVisible={isMapVisible} onShowMap={() => setIsMapVisible(true)} />
         </div>
       </div>
     </section>

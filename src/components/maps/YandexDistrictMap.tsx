@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { serviceDistricts } from "@/data/areas";
+import { mapContent } from "@/data/content";
 
 type Coordinate = readonly [number, number];
 
@@ -122,7 +123,7 @@ export function YandexDistrictMap() {
             [closePolygon(district.polygon)],
             {
               hintContent: district.name,
-              balloonContent: `<strong>${district.name}</strong><br/>Ориентировочная зона выезда`,
+              balloonContent: `<strong>${district.name}</strong><br/>${mapContent.districtBalloonSuffix}`,
             },
             {
               fillColor: index % 2 === 0 ? "#FFD21F" : "#111111",
@@ -173,22 +174,21 @@ export function YandexDistrictMap() {
   }, []);
 
   return (
-    <div className="relative aspect-[4/3] min-h-[280px] md:aspect-[16/10]" data-yandex-district-map>
-      <div ref={containerRef} className="absolute inset-0" aria-label="Яндекс-карта с выделенными районами работы" />
+    <div className="relative h-[320px] md:aspect-[16/10] md:h-auto md:min-h-[360px]" data-yandex-district-map>
+      <div ref={containerRef} className="absolute inset-0" aria-label={mapContent.areaLabel} />
 
       {status === "loading" ? (
         <div className="absolute inset-0 grid place-items-center bg-[#eef4fb] px-5 text-center text-sm font-extrabold text-[var(--muted)]">
-          Загружаем Яндекс.Карты и выделяем районы СЗАО…
+          {mapContent.loading}
         </div>
       ) : null}
 
       {status === "error" ? (
         <div className="absolute inset-0 grid place-items-center bg-[var(--paper)] px-5 text-center">
           <div>
-            <p className="font-display text-2xl font-bold text-[var(--ink)]">Карта API не загрузилась</p>
+            <p className="font-display text-2xl font-bold text-[var(--ink)]">{mapContent.errorTitle}</p>
             <p className="mt-2 text-sm font-semibold leading-6 text-[var(--muted)]">
-              Для выделения районов через Yandex Maps JS API может понадобиться ключ
-              NEXT_PUBLIC_YANDEX_MAPS_API_KEY.
+              {mapContent.errorDescription}
             </p>
           </div>
         </div>

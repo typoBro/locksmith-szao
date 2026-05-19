@@ -1,10 +1,26 @@
 import type { Metadata, Viewport } from "next";
+import { Manrope, Oswald } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { MobileActionDock } from "@/components/layout/MobileActionDock";
+import { seoContent } from "@/data/content";
 import { defaultDescription, defaultTitle } from "@/lib/seo";
 import { siteConfig } from "@/data/site";
+
+const manrope = Manrope({
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const oswald = Oswald({
+  subsets: ["latin", "cyrillic"],
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -31,6 +47,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  manifest: "/manifest.webmanifest",
   openGraph: {
     title: defaultTitle,
     description: defaultDescription,
@@ -43,7 +60,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Аварийное вскрытие замков в СЗАО Москвы",
+        alt: seoContent.ogImageAlt,
       },
     ],
   },
@@ -61,13 +78,13 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#facc15",
+  themeColor: "#FFD21F",
   viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ru">
+    <html lang="ru" className={`${manrope.variable} ${oswald.variable}`}>
       <body>
         <Header />
         {children}

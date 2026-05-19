@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { seoContent } from "@/data/content";
 import { siteConfig } from "@/data/site";
 
 export const size = {
@@ -26,14 +27,14 @@ export default function Image() {
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div style={{ fontSize: 34, fontWeight: 800 }}>{siteConfig.name}</div>
-          <div style={{ fontSize: 28, fontWeight: 800, color: "#d52b1e" }}>Москва · СЗАО</div>
+          <div style={{ fontSize: 28, fontWeight: 800, color: "#d52b1e" }}>{seoContent.ogArea}</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 78, lineHeight: 1.04, fontWeight: 900, maxWidth: 920 }}>
-            Аварийное вскрытие замков
+            {seoContent.ogTitle}
           </div>
           <div style={{ marginTop: 28, fontSize: 34, lineHeight: 1.25, maxWidth: 920 }}>
-            Двери, авто, гаражи и сейфы. Проверка права доступа. Цена до начала работ.
+            {seoContent.ogDescription}
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 24 }}>

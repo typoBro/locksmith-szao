@@ -1,89 +1,71 @@
 import { AnimatedReveal } from "@/components/reactbits/AnimatedReveal";
 import { SpotlightCard } from "@/components/reactbits/SpotlightCard";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { servicesContent } from "@/data/content";
 import { serviceGroups, services } from "@/data/services";
-
-const priceRules = [
-  ["Ориентир", "Сначала коротко описываете ситуацию: объект, район и что случилось."],
-  ["Перед работой", "Финальную сумму мастер подтверждает до начала вскрытия."],
-  ["Отдельно", "Замена, расходники и срочность согласуются заранее."],
-];
 
 export function Services() {
   return (
-    <section id="services" className="relative border-y border-[var(--line)] bg-[var(--paper-warm)] py-12 md:py-16">
-      <span id="prices" className="absolute -top-20" aria-hidden="true" />
+    <section id="services" className="relative border-y border-[var(--line)] bg-[var(--paper-warm)] py-10 md:py-16">
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          label="Услуги"
-          title="Что нужно открыть"
-          description="Основные сценарии вызова. Полный список работ из Avito — ниже одним компактным блоком."
+          label={servicesContent.label}
+          title={servicesContent.title}
+          description={servicesContent.description}
         />
 
         <AnimatedReveal>
-          <div className="mt-7 grid gap-2 md:mt-9 md:grid-cols-2 md:gap-3">
+          <div className="mt-5 grid gap-2 md:mt-9 md:grid-cols-2 md:gap-3 xl:grid-cols-4">
             {services.map((service) => (
-              <SpotlightCard key={service.title} className="px-4 py-4 md:p-5">
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="font-display text-2xl font-bold leading-none text-[var(--ink)] md:text-3xl">{service.title}</h3>
+              <SpotlightCard
+                key={service.title}
+                className="min-h-[104px] bg-white p-3 transition duration-200 active:translate-y-px min-[380px]:min-h-[108px] md:min-h-52 md:p-5 md:hover:-translate-y-0.5 md:hover:border-[var(--ink)]"
+              >
+                <div className="flex h-full flex-col justify-between gap-2">
+                  <div className="flex items-start justify-between gap-2">
+                    <h3 className="font-display text-[1.75rem] font-bold leading-none text-[var(--ink)] md:text-3xl">{service.title}</h3>
+                    <span className="shrink-0 border border-[var(--line)] bg-[var(--paper)] px-1.5 py-1 text-[9px] font-extrabold uppercase leading-3 text-[var(--muted)] md:hidden">
+                      {service.badge}
+                    </span>
+                  </div>
+
+                  <p className="max-w-xl overflow-hidden text-[13px] font-semibold leading-[18px] text-[var(--graphite)] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] [display:-webkit-box] md:mt-4 md:block md:text-base md:leading-6">
+                    {service.scenario}
+                  </p>
+
+                  <span className="hidden w-fit shrink-0 border border-[var(--line)] bg-[var(--paper)] px-2 py-1 text-[10px] font-extrabold uppercase leading-4 text-[var(--muted)] md:block">
+                    {service.badge}
+                  </span>
                 </div>
-                <p className="mt-3 max-w-xl text-sm font-semibold leading-6 text-[var(--graphite)] md:mt-4 md:text-base">
-                  {service.description}
-                </p>
               </SpotlightCard>
             ))}
           </div>
+
+          <details className="group mt-4 border border-[var(--line)] bg-white md:mt-6">
+            <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 text-sm font-extrabold text-[var(--ink)] transition hover:bg-[var(--paper)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ink)] md:px-5 md:text-base">
+              <span>+ {servicesContent.fullListLabel}</span>
+              <span className="text-xl leading-none text-[var(--muted)] transition group-open:rotate-45" aria-hidden="true">
+                +
+              </span>
+            </summary>
+
+            <div className="grid gap-0 border-t border-[var(--line)] md:grid-cols-3">
+              {serviceGroups.map((group) => (
+                <section key={group.title} className="border-b border-[var(--line)] p-4 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
+                  <h3 className="text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--muted)]">{group.title}</h3>
+                  <ul className="mt-3 grid gap-2">
+                    {group.items.map((item) => (
+                      <li key={item} className="flex gap-2 text-sm font-semibold leading-5 text-[var(--graphite)]">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-[var(--action)]" aria-hidden="true" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
+          </details>
         </AnimatedReveal>
-
-        <p className="mt-5 border-y border-[var(--ink)] bg-white px-4 py-4 text-sm font-extrabold leading-6 text-[var(--ink)]">
-          Ориентир по Avito: от 500 ₽. Итог зависит от замка, доступа и деталей на замену.
-        </p>
-
-        <div className="mt-6 grid gap-3 lg:grid-cols-3">
-          {serviceGroups.map((group) => (
-            <section key={group.title} className="border border-[var(--line)] bg-white p-4">
-              <h3 className="font-display text-2xl font-bold leading-none text-[var(--ink)]">{group.title}</h3>
-              <ul className="mt-4 divide-y divide-[var(--line)]">
-                {group.items.map((item) => (
-                  <li key={item} className="py-3 text-sm font-bold leading-5 text-[var(--graphite)]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ))}
-        </div>
-
-        <details className="mt-5 border-y border-[var(--ink)] bg-white md:hidden">
-          <summary className="cursor-pointer list-none px-4 py-4 text-sm font-extrabold text-[var(--ink)]">
-            Как считаем стоимость
-          </summary>
-          <div className="grid gap-4 px-4 pb-4">
-            {priceRules.map(([title, text], index) => (
-              <div key={title} className="grid grid-cols-[36px_1fr] gap-3">
-                <span className="font-display text-xl font-bold leading-none text-[var(--ink)]">{String(index + 1).padStart(2, "0")}</span>
-                <div>
-                <h4 className="text-sm font-extrabold text-[var(--ink)]">{title}</h4>
-                <p className="mt-1 text-sm leading-6 text-[var(--muted)]">{text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </details>
-
-        <div className="mt-6 hidden border-y border-[var(--ink)] bg-white p-5 md:block">
-          <p className="text-sm font-extrabold text-[var(--ink)]">Как считаем стоимость</p>
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
-            {priceRules.map(([title, text], index) => (
-              <div key={title} className="border-l border-[var(--line)] pl-4 first:border-l-0 first:pl-0">
-                <p className="font-display text-2xl font-bold leading-none text-[var(--ink)]">{String(index + 1).padStart(2, "0")}</p>
-                <h4 className="mt-3 text-sm font-extrabold text-[var(--ink)]">{title}</h4>
-                <p className="mt-1 text-sm leading-6 text-[var(--muted)]">{text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
       </div>
     </section>
   );

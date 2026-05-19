@@ -2,6 +2,7 @@
 
 import type { MouseEvent, ReactNode } from "react";
 import { useRef } from "react";
+import { useReducedMotion } from "motion/react";
 
 type MagnetProps = {
   children: ReactNode;
@@ -11,10 +12,11 @@ type MagnetProps = {
 
 export function Magnet({ children, className, strength = 0.12 }: MagnetProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
 
   function handleMove(event: MouseEvent<HTMLDivElement>) {
     const element = ref.current;
-    if (!element || window.matchMedia("(max-width: 767px)").matches) return;
+    if (!element || reduceMotion || window.matchMedia("(max-width: 767px), (hover: none)").matches) return;
 
     const rect = element.getBoundingClientRect();
     const x = (event.clientX - rect.left - rect.width / 2) * strength;
@@ -29,7 +31,13 @@ export function Magnet({ children, className, strength = 0.12 }: MagnetProps) {
   }
 
   return (
-    <div ref={ref} className={className} onMouseMove={handleMove} onMouseLeave={handleLeave}>
+    <div
+      ref={ref}
+      className={className}
+      style={{ transition: reduceMotion ? undefined : "transform 180ms cubic-bezier(0.22, 1, 0.36, 1)" }}
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+    >
       {children}
     </div>
   );

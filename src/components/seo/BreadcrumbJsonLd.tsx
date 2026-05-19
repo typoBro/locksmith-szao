@@ -1,4 +1,5 @@
 import type { BreadcrumbList, WithContext } from "schema-dts";
+import { seoContent } from "@/data/content";
 import { siteConfig } from "@/data/site";
 
 export function BreadcrumbJsonLd() {
@@ -9,13 +10,13 @@ export function BreadcrumbJsonLd() {
       {
         "@type": "ListItem",
         position: 1,
-        name: "Главная",
+        name: seoContent.breadcrumbHome,
         item: siteConfig.url,
       },
       {
         "@type": "ListItem",
         position: 2,
-        name: "Аварийное вскрытие замков в СЗАО",
+        name: seoContent.breadcrumbCurrent,
         item: siteConfig.url,
       },
     ],
