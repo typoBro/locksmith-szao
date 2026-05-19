@@ -8,7 +8,7 @@ import { reachGoal } from "@/lib/analytics";
 
 export function FinalCta() {
   return (
-    <section className="bg-[var(--ink)] py-12 text-white md:py-16">
+    <section data-final-cta className="bg-[var(--ink)] py-12 text-white md:py-16">
       <div className="mx-auto flex max-w-[1440px] flex-col gap-5 px-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
         <div>
           <h2 className="font-display text-4xl font-bold leading-tight md:text-5xl">{finalCtaContent.title}</h2>

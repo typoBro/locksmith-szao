@@ -27,7 +27,7 @@ export function CasePhotoSwap() {
 
   return (
     <div className="hidden lg:mt-0 lg:block lg:min-h-full">
-      <div className="relative hidden h-full min-h-[520px] overflow-hidden border border-[var(--ink)] bg-[var(--ink)] p-5 text-white shadow-[10px_10px_0_rgba(17,17,17,0.08)] lg:block">
+      <div className="relative hidden h-full min-h-[520px] overflow-hidden rounded-[28px] border border-[var(--ink)] bg-[var(--ink)] p-5 text-white shadow-[var(--surface-shadow)] lg:block">
         <div className="relative z-20 max-w-sm">
           <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-white/55">{heroCase.label}</p>
           <h2 className="mt-3 font-display text-4xl font-bold leading-none">{heroCase.title}</h2>

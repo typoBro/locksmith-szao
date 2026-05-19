@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useId, useState, useSyncExternalStore } from "react";
+import { AnimatedList } from "@/components/reactbits/AnimatedList";
 import { faq } from "@/data/faq";
 import { faqContent } from "@/data/content";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -34,7 +35,7 @@ export function Faq() {
   const baseId = useId();
 
   return (
-    <section id="faq" className="bg-white pt-10 pb-[calc(1rem+var(--mobile-action-bar-space))] md:py-16">
+    <section id="faq" className="mobile-section bg-white md:py-16">
       <div className="mx-auto grid max-w-[1120px] gap-6 px-4 sm:px-6 md:gap-9 lg:px-8">
         <div>
           <SectionHeader
@@ -44,7 +45,13 @@ export function Faq() {
             className="lg:block"
           />
 
-          <div className="mt-5 border-y border-[var(--line)] md:mt-9">
+          <AnimatedList
+            disableOnMobile={false}
+            className="mobile-card mt-5 overflow-hidden bg-white md:mt-9"
+            itemClassName="border-b border-[var(--line)] last:border-b-0"
+            y={6}
+            duration={0.38}
+          >
             {faq.map((item, index) => {
               const isManuallyOpen = openIndex === index;
               const isDesktopDefaultOpen = isDesktop && openIndex === undefined && index === 0;
@@ -56,7 +63,7 @@ export function Faq() {
                 <div
                   key={item.question}
                   className={cn(
-                    "border-b border-l-4 border-b-[var(--line)] bg-white transition-colors last:border-b-0",
+                    "border-l-4 bg-white transition-colors",
                     isOpen ? "border-l-[var(--action)]" : "border-l-transparent",
                   )}
                 >
@@ -69,7 +76,7 @@ export function Faq() {
                     className="grid min-h-[58px] w-full cursor-pointer grid-cols-[1fr_42px] items-center gap-3 px-3 py-2 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--action)] md:min-h-16 md:px-4 md:py-5"
                   >
                     <span className="text-base font-extrabold leading-tight text-[var(--ink)] md:text-xl">{item.question}</span>
-                    <span className="grid h-9 w-9 place-items-center justify-self-end border border-[var(--line)] text-3xl font-bold leading-none text-[var(--ink)] transition md:h-10 md:w-10">
+                    <span className="grid h-9 w-9 place-items-center justify-self-end rounded-[14px] border border-[var(--line)] bg-[var(--paper)] text-3xl font-bold leading-none text-[var(--ink)] transition md:h-10 md:w-10">
                       {isOpen ? "−" : "+"}
                     </span>
                   </button>
@@ -94,7 +101,7 @@ export function Faq() {
                 </div>
               );
             })}
-          </div>
+          </AnimatedList>
         </div>
       </div>
     </section>

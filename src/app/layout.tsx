@@ -3,7 +3,7 @@ import { Manrope, Oswald } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { MobileActionDock } from "@/components/layout/MobileActionDock";
+import { SmartCallFab } from "@/components/layout/SmartCallFab";
 import { seoContent } from "@/data/content";
 import { defaultDescription, defaultTitle } from "@/lib/seo";
 import { siteConfig } from "@/data/site";
@@ -89,7 +89,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Header />
         {children}
         <Footer />
-        <MobileActionDock />
+        <SmartCallFab />
       </body>
     </html>
   );

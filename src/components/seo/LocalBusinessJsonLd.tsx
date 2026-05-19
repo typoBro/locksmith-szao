@@ -10,14 +10,20 @@ export function LocalBusinessJsonLd() {
     "@type": "Locksmith",
     name: siteConfig.name,
     description: seoContent.localBusinessDescription,
-    telephone: siteConfig.phone,
-    email: siteConfig.email,
     url: siteConfig.url,
     image: absoluteUrl(siteConfig.profileImage),
     sameAs: [siteConfig.avitoUrl],
     areaServed: ["Москва", "СЗАО", ...areas],
     priceRange: "₽₽",
   };
+
+  if (siteConfig.phone) {
+    jsonLd.telephone = siteConfig.phone;
+  }
+
+  if (siteConfig.email) {
+    jsonLd.email = siteConfig.email;
+  }
 
   return (
     <script

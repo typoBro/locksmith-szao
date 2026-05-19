@@ -48,9 +48,9 @@ export default function Image() {
               fontWeight: 900,
             }}
           >
-            {siteConfig.phone}
+            Позвонить мастеру
           </div>
-          <div style={{ fontSize: 28, color: "#6e6a63" }}>{siteConfig.hours}</div>
+          <div style={{ fontSize: 28, color: "#6e6a63" }}>{siteConfig.avitoProfileLabel}</div>
         </div>
       </div>
     ),

@@ -5,16 +5,19 @@ export const heroContent = {
   title: "Аварийное вскрытие замков в СЗАО",
   description: "Двери, авто, гаражи, сейфы. Цена и право доступа — до начала работы.",
   primaryCta: "Позвонить мастеру",
-  secondaryCta: "WhatsApp",
+  secondaryCta: "Смотреть Avito",
+  secondaryCtaShort: "Профиль Avito",
   proofChips: [`Avito ${siteConfig.proof.rating}`, siteConfig.proof.reviews, siteConfig.proof.since.replace("на Avito ", "")],
-  trustItems: ["Цена до начала", "Доступ проверяем", "Выезд по СЗАО"],
+  mediaChips: [`Avito ${siteConfig.proof.rating}`, siteConfig.proof.reviews, "СЗАО"],
+  mediaCaption: "Фото с выезда",
+  trustItems: ["с 2017 года", "доступ проверяем", "цена до начала"],
 };
 
 export const servicesContent = {
   label: "Услуги",
   title: "Что нужно открыть",
-  description: "Четыре основных сценария вызова: без лишней витрины и повторов.",
-  fullListLabel: "Полный список работ из Avito",
+  description: "Выберите ситуацию — цену уточним по телефону до начала работы.",
+  fullListLabel: "Все услуги",
 };
 
 export const areasContent = {
@@ -26,7 +29,7 @@ export const areasContent = {
   mapAriaLabel: "Открыть зону в Яндекс Картах",
   yandexMapsButton: "Открыть Яндекс-Карты",
   mapPreviewTitle: "Карта СЗАО",
-  mapPreviewDescription: "Интерактивную карту загрузим только по запросу, чтобы мобильная страница открывалась быстрее.",
+  mapPreviewDescription: "Карта открывается по кнопке; список районов доступен сразу.",
 };
 
 export const avitoProfileContent = {
@@ -34,10 +37,9 @@ export const avitoProfileContent = {
   title: "Сергей — мастер по замкам",
   status: "Частный исполнитель с Avito",
   description:
-    "Выездной мастер по СЗАО. Работает без офиса и приёма клиентов. Заявку удобнее уточнять по телефону или WhatsApp.",
+    "Выездной мастер по СЗАО. Работает без офиса и приёма клиентов. Детали вызова удобнее уточнять по телефону.",
   imageAlt: "Сергей - мастер по замкам из Avito",
   callCta: "Позвонить",
-  whatsappCta: "WhatsApp",
   avitoCta: "Смотреть профиль Avito",
   facts: [
     { label: "Статус", value: siteConfig.masterStatus },
@@ -50,8 +52,8 @@ export const avitoProfileContent = {
 export const prepareCallContent = {
   label: "Перед звонком",
   title: "Что подготовить",
-  description: "Четырёх коротких деталей достаточно, чтобы быстрее понять сложность выезда.",
-  photoHint: "Можно отправить фото замка в WhatsApp.",
+  description: "Достаточно 4 деталей — мастер быстрее назовёт ориентир.",
+  photoHint: "Фото замка можно описать по телефону, если оно перед глазами.",
   cta: "Позвонить",
 };
 
@@ -67,12 +69,9 @@ export const finalCtaContent = {
   cta: "Позвонить мастеру",
 };
 
-export const mobileDockContent = {
-  ariaLabel: "Быстрые действия",
-  callAriaLabel: "Позвонить мастеру",
-  callLabel: "Позвонить",
-  whatsappAriaLabel: "Написать в WhatsApp",
-  whatsappLabel: "WhatsApp",
+export const smartCallFabContent = {
+  ariaLabel: "Позвонить мастеру",
+  label: "Позвонить",
 };
 
 export const footerContent = {
@@ -96,7 +95,7 @@ export const seoContent = {
 export const mapContent = {
   areaLabel: "Яндекс-карта с выделенными районами работы",
   districtBalloonSuffix: "Ориентировочная зона выезда",
-  loading: "Загружаем Яндекс-Карты и выделяем районы СЗАО…",
-  errorTitle: "Карта временно не загрузилась",
+  loading: "Открываем карту районов…",
+  errorTitle: "Карта временно недоступна",
   errorDescription: "Район можно проверить по телефону.",
 };

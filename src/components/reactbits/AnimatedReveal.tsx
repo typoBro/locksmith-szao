@@ -10,6 +10,7 @@ const mobileRevealQuery = "(max-width: 767px), (any-pointer: coarse)";
 type AnimatedRevealProps = PropsWithChildren<{
   y?: number;
   delay?: number;
+  duration?: number;
   once?: boolean;
   className?: string;
   disableOnMobile?: boolean;
@@ -31,7 +32,15 @@ function getServerMobileRevealSnapshot() {
   return true;
 }
 
-export function AnimatedReveal({ children, y = 18, delay = 0, once = true, className, disableOnMobile = true }: AnimatedRevealProps) {
+export function AnimatedReveal({
+  children,
+  y = 18,
+  delay = 0,
+  duration = 0.42,
+  once = true,
+  className,
+  disableOnMobile = true,
+}: AnimatedRevealProps) {
   const reduceMotion = useReducedMotion();
   const isMobileRevealDisabled = useSyncExternalStore(
     subscribeToMobileReveal,
@@ -45,10 +54,13 @@ export function AnimatedReveal({ children, y = 18, delay = 0, once = true, class
 
   return (
     <motion.div
-      initial={{ opacity: 0, y }}
+      initial={{
+        opacity: isMobileRevealDisabled ? 0.94 : 0,
+        y: isMobileRevealDisabled ? Math.min(y, 8) : y,
+      }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once, margin: "-80px" }}
-      transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration, delay, ease: [0.22, 1, 0.36, 1] }}
       className={cn(className)}
     >
       {children}

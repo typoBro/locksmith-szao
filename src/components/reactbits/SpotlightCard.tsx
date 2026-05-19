@@ -24,7 +24,7 @@ export function SpotlightCard({ children, className }: SpotlightCardProps) {
     <div
       onMouseMove={handleMouseMove}
       className={cn(
-        "group relative overflow-hidden border border-[var(--line)] bg-[var(--paper)]",
+        "group relative overflow-hidden rounded-[var(--radius-card)] border border-[var(--line)] bg-[var(--paper)]",
         "before:pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_var(--x,50%)_var(--y,50%),rgba(255,210,31,0.16),transparent_38%)] before:opacity-0 before:transition-opacity before:duration-300 md:hover:before:opacity-100",
         className,
       )}
