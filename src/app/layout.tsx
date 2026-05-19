@@ -89,7 +89,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Header />
         {children}
         <Footer />
-        <SmartCallFab />
+        {siteConfig.features.smartCallFab ? <SmartCallFab /> : null}
       </body>
     </html>
   );

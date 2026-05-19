@@ -14,9 +14,9 @@ export const areas = [
 ];
 
 export const serviceArea = {
-  title: "Зона выезда по СЗАО",
+  title: "Зона выезда",
   description:
-    "Основные районы СЗАО и соседние точки, где удобно уточнить выезд мастера.",
+    "СЗАО: Митино, Строгино, Щукино, Тушино, Куркино и соседние районы.",
   primary: areas.slice(0, 8),
   yandexMapHref:
     "https://yandex.ru/maps/?ll=37.430000%2C55.820000&mode=search&text=%D0%A1%D0%97%D0%90%D0%9E%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0&z=11",

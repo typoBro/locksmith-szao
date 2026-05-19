@@ -10,22 +10,21 @@ import { areasContent } from "@/data/content";
 import { siteConfig } from "@/data/site";
 import { reachGoal } from "@/lib/analytics";
 
-const visibleAreas = ["Митино", "Строгино", "Щукино", "Тушино", "Куркино", "Хорошёво-Мнёвники", "соседние районы"];
+const visibleAreas = ["Митино", "Строгино", "Щукино", "Тушино", "Куркино", "Хорошёво-Мнёвники"];
 
 function AreaMap({ isMapVisible, onShowMap }: { isMapVisible: boolean; onShowMap: () => void }) {
   return (
     <div className="mobile-card min-w-0 rounded-[24px] bg-[var(--paper)] p-4 shadow-[var(--soft-shadow)] md:p-6">
       <div className="grid gap-5 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:items-start">
         <div className="min-w-0">
-          <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--muted)]">{areasContent.label}</p>
-          <h2 className="mt-2 font-display text-[2.6rem] font-bold leading-none text-[var(--ink)] md:text-5xl">
+          <h2 className="font-display text-[2.6rem] font-bold leading-none text-[var(--ink)] md:text-5xl">
             {serviceArea.title}
           </h2>
           <p className="mt-3 max-w-2xl text-base font-semibold leading-6 text-[var(--muted)] md:text-lg md:leading-7">
-            Митино, Строгино, Щукино, Тушино, Куркино и соседние районы.
+            {serviceArea.description}
           </p>
 
-          <div className="mt-4 flex min-w-0 flex-wrap gap-1.5 md:gap-2">
+          <div className="mt-4 flex max-h-[5.9rem] min-w-0 flex-wrap gap-1.5 overflow-hidden md:max-h-none md:gap-2">
             {visibleAreas.map((area) => (
               <span
                 key={area}
@@ -35,19 +34,6 @@ function AreaMap({ isMapVisible, onShowMap }: { isMapVisible: boolean; onShowMap
               </span>
             ))}
           </div>
-
-          <details className="mt-3 lg:hidden">
-            <summary className="inline-flex min-h-12 w-fit cursor-pointer list-none items-center text-xs font-extrabold text-[var(--muted)] underline decoration-[var(--line-strong)] underline-offset-4">
-              Все районы
-            </summary>
-            <div className="mt-3 flex min-w-0 flex-wrap gap-1.5">
-              {areas.map((area) => (
-                <span key={area} className="mobile-chip px-2.5 py-1.5 text-[12px] font-bold leading-5 text-[var(--muted)]">
-                  {area}
-                </span>
-              ))}
-            </div>
-          </details>
         </div>
 
         <div className="min-w-0">
@@ -81,7 +67,7 @@ function AreaMap({ isMapVisible, onShowMap }: { isMapVisible: boolean; onShowMap
                 reachGoal(siteConfig.metrikaGoalMap);
                 onShowMap();
               }}
-              className="mt-2 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[var(--radius-button)] border border-[var(--line-strong)] bg-white/68 px-4 text-sm font-extrabold text-[var(--ink)] transition hover:bg-white active:translate-y-px active:scale-[0.99]"
+              className="mt-3 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-[16px] border border-[var(--line)] bg-transparent px-4 text-sm font-extrabold text-[var(--muted)] transition hover:bg-white active:translate-y-px active:scale-[0.99] md:min-h-12"
             >
               <Map className="h-4 w-4" aria-hidden="true" />
               {serviceArea.showMapLabel}
@@ -115,7 +101,7 @@ export function Areas() {
   return (
     <section id="areas" className="mobile-section bg-white md:py-16">
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
-        <AnimatedReveal disableOnMobile={false} y={10} duration={0.4}>
+        <AnimatedReveal disableOnMobile={false} y={16} duration={0.38}>
           <AreaMap isMapVisible={isMapVisible} onShowMap={() => setIsMapVisible(true)} />
         </AnimatedReveal>
       </div>

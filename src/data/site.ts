@@ -35,21 +35,22 @@ export const siteConfig = {
   metrikaGoalAvito: "avito_click",
   metrikaGoalMap: "map_click",
   features: {
-    smartCallFab: true,
+    smartCallFab: false,
   },
 };
 
 export const navItems = [
+  { label: "Сергей", href: "#avito" },
   { label: "Услуги", href: "#services" },
-  { label: "Зона выезда", href: "#areas" },
+  { label: "Фото", href: "#cases" },
   { label: "FAQ", href: "#faq" },
 ];
 
 export const mobileNavItems = [
+  { label: "Сергей", href: "#avito", description: "профиль, рейтинг и данные мастера" },
   { label: "Услуги", href: "#services", description: "дверь, авто, гараж, сейф" },
   { label: "Стоимость", href: "#prices", description: "ориентир и правила расчёта" },
-  { label: "Сергей", href: "#avito", description: "профиль, рейтинг и данные мастера" },
-  { label: "Фото работ", href: "#cases", description: "примеры из Avito" },
+  { label: "Фото работ", href: "#cases", description: "фото работ и диагностика" },
   { label: "Зона", href: "#areas", description: "районы СЗАО и проверка адреса" },
   { label: "FAQ", href: "#faq", description: "цена, документы, повреждения" },
 ];

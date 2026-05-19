@@ -4,23 +4,24 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { heroContent } from "@/data/content";
 import { siteConfig } from "@/data/site";
+import { cardStagger, motionDurations, smoothEase } from "@/lib/motion";
 
 export function HeroMediaCard() {
   const reduceMotion = useReducedMotion();
 
   return (
     <motion.figure
-      className="mobile-card relative isolate mb-5 overflow-hidden bg-[var(--ink)] shadow-[var(--surface-shadow)] lg:hidden"
+      className="relative isolate mb-5 overflow-hidden rounded-[28px] border border-[var(--line)] bg-[var(--ink)] shadow-[var(--surface-shadow)] lg:hidden"
       initial={reduceMotion ? false : { opacity: 0, scale: 0.985 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: reduceMotion ? 0 : 0.5, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: reduceMotion ? 0 : motionDurations.heroImage, ease: smoothEase }}
     >
       <div className="relative aspect-[16/11] min-h-[292px] min-[390px]:min-h-[312px] sm:aspect-[16/9]">
         <Image
           src={siteConfig.heroImage}
           alt="Сергей - мастер по замкам на выезде"
           fill
-          className="object-cover"
+          className="object-cover object-center"
           sizes="(max-width: 1023px) calc(100vw - 32px), 0vw"
           priority
           loading="eager"
@@ -36,7 +37,7 @@ export function HeroMediaCard() {
           animate="visible"
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.07, delayChildren: 0.16 } },
+            visible: { transition: { staggerChildren: cardStagger, delayChildren: 0.12 } },
           }}
         >
           {heroContent.mediaChips.map((chip) => (
@@ -47,7 +48,7 @@ export function HeroMediaCard() {
                 hidden: { opacity: 0, y: 8 },
                 visible: { opacity: 1, y: 0 },
               }}
-              transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: reduceMotion ? 0 : motionDurations.heroText, ease: smoothEase }}
             >
               {chip}
             </motion.span>

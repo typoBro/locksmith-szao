@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { mobileNavItems, navItems, siteConfig } from "@/data/site";
 import { ButtonLink } from "@/components/ui/Button";
 import { reachGoal } from "@/lib/analytics";
+import { smoothEase } from "@/lib/motion";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -94,7 +95,7 @@ export function Header() {
               initial={reduceMotion ? false : { y: "100%" }}
               animate={{ y: 0 }}
               exit={reduceMotion ? { y: "100%" } : { y: "100%" }}
-              transition={{ duration: reduceMotion ? 0 : 0.28, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: reduceMotion ? 0 : 0.28, ease: smoothEase }}
             >
               <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-[var(--line-strong)]" aria-hidden="true" />
 

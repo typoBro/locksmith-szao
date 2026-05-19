@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { smartCallFabContent } from "@/data/content";
 import { siteConfig } from "@/data/site";
 import { reachGoal } from "@/lib/analytics";
+import { smoothEase } from "@/lib/motion";
 
 function isMenuOpen() {
   return document.body.dataset.mobileMenuOpen === "true";
@@ -61,7 +62,7 @@ export function SmartCallFab() {
           initial={reduceMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
-          transition={{ duration: reduceMotion ? 0 : 0.18 }}
+          transition={{ duration: reduceMotion ? 0 : 0.18, ease: smoothEase }}
         >
           <a
             href={siteConfig.phoneHref}

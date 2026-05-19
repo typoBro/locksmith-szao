@@ -9,6 +9,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { heroContent } from "@/data/content";
 import { siteConfig } from "@/data/site";
 import { reachGoal } from "@/lib/analytics";
+import { cardStagger, motionDurations, smoothEase } from "@/lib/motion";
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
@@ -25,18 +26,28 @@ export function Hero() {
 
           <motion.h1
             className="font-display max-w-4xl text-balance text-[clamp(2rem,9.2vw,3.05rem)] font-bold uppercase leading-[0.98] text-[var(--ink)] sm:text-6xl lg:text-[clamp(4rem,6.2vw,4.85rem)] lg:leading-[0.94]"
-            initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.42, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: reduceMotion ? 0 : motionDurations.heroText, delay: 0.08, ease: smoothEase }}
           >
             {heroContent.title}
           </motion.h1>
 
-          <p className="mt-4 max-w-2xl text-[15px] font-medium leading-6 text-[var(--graphite)] sm:text-lg lg:mt-5 lg:text-xl lg:leading-8">
+          <motion.p
+            className="mt-4 max-w-2xl text-[15px] font-medium leading-6 text-[var(--graphite)] sm:text-lg lg:mt-5 lg:text-xl lg:leading-8"
+            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: reduceMotion ? 0 : motionDurations.heroText, delay: 0.12, ease: smoothEase }}
+          >
             {heroContent.description}
-          </p>
+          </motion.p>
 
-          <div className="mt-5 grid min-w-0 grid-cols-1 gap-2 lg:mt-7 lg:flex lg:flex-row lg:items-center">
+          <motion.div
+            className="mt-5 grid min-w-0 grid-cols-1 gap-2 lg:mt-7 lg:flex lg:flex-row lg:items-center"
+            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: reduceMotion ? 0 : motionDurations.heroText, delay: 0.16, ease: smoothEase }}
+          >
             <Magnet className="min-w-0 lg:w-auto">
               <ButtonLink
                 href={siteConfig.phoneHref}
@@ -53,30 +64,21 @@ export function Hero() {
               href={siteConfig.avitoUrl}
               variant="secondary"
               size="lg"
-              className="min-h-[52px] w-full bg-transparent px-3 text-[14px] shadow-none lg:min-h-[56px] lg:w-auto lg:min-w-36 lg:bg-[var(--paper)] lg:px-7 lg:text-base"
+              className="hidden min-h-[56px] w-auto min-w-36 bg-[var(--paper)] px-7 text-base lg:inline-flex"
               onClick={() => reachGoal(siteConfig.metrikaGoalAvito)}
             >
               <ExternalLink className="h-5 w-5" aria-hidden="true" />
-              <span className="lg:hidden">{heroContent.secondaryCtaShort}</span>
-              <span className="hidden lg:inline">{heroContent.secondaryCta}</span>
+              {heroContent.secondaryCta}
             </ButtonLink>
-          </div>
-
-          <div className="mt-4 hidden flex-wrap gap-2 lg:mt-5 lg:flex">
-            {heroContent.proofChips.map((chip) => (
-              <span key={chip} className="mobile-chip px-2.5 py-1.5 text-[11px] font-extrabold text-[var(--graphite)] lg:px-3 lg:py-2 lg:text-xs">
-                {chip}
-              </span>
-            ))}
-          </div>
+          </motion.div>
 
           <motion.ul
-            className="mt-4 grid grid-cols-3 gap-1.5 text-[11px] font-extrabold leading-4 text-[var(--ink)] lg:mt-4 lg:gap-2 lg:text-sm lg:leading-5"
+            className="mt-4 hidden grid-cols-3 gap-1.5 text-[11px] font-extrabold leading-4 text-[var(--ink)] lg:mt-4 lg:grid lg:gap-2 lg:text-sm lg:leading-5"
             initial={reduceMotion ? false : "hidden"}
             animate="visible"
             variants={{
               hidden: {},
-              visible: { transition: { staggerChildren: 0.06, delayChildren: 0.18 } },
+              visible: { transition: { staggerChildren: cardStagger, delayChildren: 0.18 } },
             }}
           >
             {heroContent.trustItems.map((item) => (
@@ -87,12 +89,21 @@ export function Hero() {
                   hidden: { opacity: 0, y: 8 },
                   visible: { opacity: 1, y: 0 },
                 }}
-                transition={{ duration: reduceMotion ? 0 : 0.32, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: reduceMotion ? 0 : motionDurations.heroText, ease: smoothEase }}
               >
                 {item}
               </motion.li>
             ))}
           </motion.ul>
+
+          <motion.p
+            className="mt-3 text-center text-[12px] font-extrabold leading-5 text-[var(--muted)] lg:hidden"
+            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: reduceMotion ? 0 : motionDurations.heroText, delay: 0.2, ease: smoothEase }}
+          >
+            {heroContent.trustLine}
+          </motion.p>
         </div>
 
         <CasePhotoSwap />

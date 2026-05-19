@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import type { PropsWithChildren } from "react";
 import { Children, useSyncExternalStore } from "react";
 import { cn } from "@/lib/cn";
+import { cardStagger, motionDurations, smoothEase } from "@/lib/motion";
 
 const coarsePointerQuery = "(max-width: 767px), (any-pointer: coarse)";
 
@@ -37,10 +38,10 @@ export function AnimatedList({
   children,
   className,
   itemClassName,
-  y = 8,
+  y = 16,
   delay = 0,
-  stagger = 0.055,
-  duration = 0.38,
+  stagger = cardStagger,
+  duration = motionDurations.section,
   disableOnMobile = true,
 }: AnimatedListProps) {
   const reduceMotion = useReducedMotion();
@@ -70,15 +71,15 @@ export function AnimatedList({
             key={itemKey}
             className={cn(itemClassName)}
             initial={{
-              opacity: isCoarsePointer ? 0.96 : 0,
-              y: isCoarsePointer ? Math.min(y, 5) : y,
+              opacity: isCoarsePointer ? 0.98 : 0,
+              y: isCoarsePointer ? Math.min(y, 4) : y,
             }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{
               duration,
               delay: delay + index * stagger,
-              ease: [0.22, 1, 0.36, 1],
+              ease: smoothEase,
             }}
           >
             {child}

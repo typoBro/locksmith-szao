@@ -3,21 +3,20 @@ import { siteConfig } from "@/data/site";
 export const heroContent = {
   badge: "Москва, СЗАО · частный мастер",
   title: "Аварийное вскрытие замков в СЗАО",
-  description: "Двери, авто, гаражи, сейфы. Цена и право доступа — до начала работы.",
+  description: "Сергей открывает двери, авто, гаражи и сейфы. Цена и право доступа — до начала работы.",
   primaryCta: "Позвонить мастеру",
   secondaryCta: "Смотреть Avito",
-  secondaryCtaShort: "Профиль Avito",
-  proofChips: [`Avito ${siteConfig.proof.rating}`, siteConfig.proof.reviews, siteConfig.proof.since.replace("на Avito ", "")],
-  mediaChips: [`Avito ${siteConfig.proof.rating}`, siteConfig.proof.reviews, "СЗАО"],
+  mediaChips: [`${siteConfig.proof.rating} на Avito`, "СЗАО"],
   mediaCaption: "Фото с выезда",
-  trustItems: ["с 2017 года", "доступ проверяем", "цена до начала"],
+  trustLine: `${siteConfig.proof.rating} на Avito · ${siteConfig.proof.reviews} · ${siteConfig.proof.since.replace("на Avito ", "")}`,
+  trustItems: ["цена до начала", "доступ проверяем", "выезд по СЗАО"],
 };
 
 export const servicesContent = {
   label: "Услуги",
-  title: "Что нужно открыть",
-  description: "Выберите ситуацию — цену уточним по телефону до начала работы.",
-  fullListLabel: "Все услуги",
+  title: "Что открыть",
+  description: "Скажите, что нужно открыть — цену уточнят по телефону.",
+  fullListLabel: "Показать полный список работ",
 };
 
 export const areasContent = {
@@ -36,36 +35,27 @@ export const avitoProfileContent = {
   label: "Профиль Avito",
   title: "Сергей — мастер по замкам",
   status: "Частный исполнитель с Avito",
-  description:
-    "Выездной мастер по СЗАО. Работает без офиса и приёма клиентов. Детали вызова удобнее уточнять по телефону.",
+  description: "Выезд по СЗАО. Цену Сергей называет до работы.",
   imageAlt: "Сергей - мастер по замкам из Avito",
   callCta: "Позвонить",
-  avitoCta: "Смотреть профиль Avito",
+  avitoCta: "Профиль на Avito",
   facts: [
-    { label: "Статус", value: siteConfig.masterStatus },
-    { label: "Локация", value: siteConfig.avitoLocation },
-    { label: "Метро", value: siteConfig.metro.join(" · ") },
-    { label: "Зона", value: "Москва, СЗАО и соседние районы" },
+    { label: "Статус", value: "частный исполнитель" },
+    { label: "Зона", value: "Москва, СЗАО" },
+    { label: "Формат", value: "без офиса, выездной сервис" },
   ],
-};
-
-export const prepareCallContent = {
-  label: "Перед звонком",
-  title: "Что подготовить",
-  description: "Достаточно 4 деталей — мастер быстрее назовёт ориентир.",
-  photoHint: "Фото замка можно описать по телефону, если оно перед глазами.",
-  cta: "Позвонить",
 };
 
 export const faqContent = {
   label: "FAQ",
   title: "Частые вопросы",
-  description: "Цена, документы, ночной выезд и аккуратное открытие.",
+  description: "Цена, документы и аккуратное открытие.",
+  callHint: "Перед звонком достаточно знать район и что нужно открыть.",
 };
 
 export const finalCtaContent = {
   title: "Нужно открыть замок?",
-  description: "Позвоните Сергею: мастер уточнит ситуацию и ориентир по цене.",
+  description: "Позвоните Сергею: он уточнит ситуацию и цену.",
   cta: "Позвонить мастеру",
 };
 
@@ -95,7 +85,7 @@ export const seoContent = {
 export const mapContent = {
   areaLabel: "Яндекс-карта с выделенными районами работы",
   districtBalloonSuffix: "Ориентировочная зона выезда",
-  loading: "Открываем карту районов…",
+  loading: "",
   errorTitle: "Карта временно недоступна",
   errorDescription: "Район можно проверить по телефону.",
 };

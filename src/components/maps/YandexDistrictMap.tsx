@@ -178,8 +178,8 @@ export function YandexDistrictMap() {
       <div ref={containerRef} className="absolute inset-0" aria-label={mapContent.areaLabel} />
 
       {status === "loading" ? (
-        <div className="absolute inset-0 grid place-items-center bg-[#eef4fb] px-5 text-center text-sm font-extrabold text-[var(--muted)]">
-          {mapContent.loading}
+        <div className="absolute inset-0 bg-[var(--paper)]" aria-hidden="true">
+          <div className="h-full w-full animate-pulse bg-[linear-gradient(135deg,rgba(255,210,31,0.12),rgba(17,17,17,0.04))]" />
         </div>
       ) : null}
 

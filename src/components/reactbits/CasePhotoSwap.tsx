@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { heroCase, heroCasePhotos } from "@/data/cases";
+import { smoothEase } from "@/lib/motion";
 
 const stackPositions = [
   { x: 0, y: 0, rotate: -0.6, scale: 1 },
@@ -53,7 +54,7 @@ export function CasePhotoSwap() {
                   scale: position.scale,
                   opacity: order === heroCasePhotos.length - 1 ? 0.82 : 1,
                 }}
-                transition={{ duration: reduceMotion ? 0 : 0.85, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: reduceMotion ? 0 : 0.85, ease: smoothEase }}
               >
                 <Image
                   src={photo.src}

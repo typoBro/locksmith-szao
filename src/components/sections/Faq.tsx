@@ -7,6 +7,7 @@ import { faq } from "@/data/faq";
 import { faqContent } from "@/data/content";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { cn } from "@/lib/cn";
+import { motionDurations, smoothEase } from "@/lib/motion";
 
 const desktopQuery = "(min-width: 768px)";
 
@@ -45,12 +46,16 @@ export function Faq() {
             className="lg:block"
           />
 
+          <p className="mt-4 rounded-[18px] border border-[var(--line)] bg-[var(--paper)] px-3 py-2.5 text-sm font-bold leading-5 text-[var(--muted)] md:mt-6 md:inline-block md:px-4">
+            {faqContent.callHint}
+          </p>
+
           <AnimatedList
             disableOnMobile={false}
-            className="mobile-card mt-5 overflow-hidden bg-white md:mt-9"
+            className="mobile-card mt-4 overflow-hidden bg-white md:mt-7"
             itemClassName="border-b border-[var(--line)] last:border-b-0"
-            y={6}
-            duration={0.38}
+            y={16}
+            duration={motionDurations.section}
           >
             {faq.map((item, index) => {
               const isManuallyOpen = openIndex === index;
@@ -89,7 +94,7 @@ export function Faq() {
                         initial={reduceMotion ? false : { height: 0, opacity: 0 }}
                         animate={reduceMotion ? { height: "auto", opacity: 1 } : { height: "auto", opacity: 1 }}
                         exit={reduceMotion ? { height: 0, opacity: 0 } : { height: 0, opacity: 0 }}
-                        transition={{ duration: reduceMotion ? 0 : 0.22, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: reduceMotion ? 0 : motionDurations.faq, ease: smoothEase }}
                         className="overflow-hidden"
                       >
                         <p className="max-w-3xl px-3 pb-4 text-[13px] font-semibold leading-5 text-[var(--muted)] md:px-4 md:pb-6 md:text-base md:leading-6">

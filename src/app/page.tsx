@@ -4,7 +4,6 @@ import { Cases } from "@/components/sections/Cases";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { Hero } from "@/components/sections/Hero";
-import { PrepareCall } from "@/components/sections/PrepareCall";
 import { Pricing } from "@/components/sections/Pricing";
 import { Services } from "@/components/sections/Services";
 import { Trust } from "@/components/sections/Trust";
@@ -17,13 +16,12 @@ export default function Home() {
     <>
       <main>
         <Hero />
+        <AvitoProfile />
         <Trust />
         <Services />
         <Pricing />
-        <AvitoProfile />
-        <Areas />
         <Cases />
-        <PrepareCall />
+        <Areas />
         <Faq />
         <FinalCta />
       </main>

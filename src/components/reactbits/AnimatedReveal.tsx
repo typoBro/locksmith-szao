@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import type { PropsWithChildren } from "react";
 import { useSyncExternalStore } from "react";
 import { cn } from "@/lib/cn";
+import { motionDurations, smoothEase } from "@/lib/motion";
 
 const mobileRevealQuery = "(max-width: 767px), (any-pointer: coarse)";
 
@@ -34,9 +35,9 @@ function getServerMobileRevealSnapshot() {
 
 export function AnimatedReveal({
   children,
-  y = 18,
+  y = 16,
   delay = 0,
-  duration = 0.42,
+  duration = motionDurations.section,
   once = true,
   className,
   disableOnMobile = true,
@@ -55,12 +56,12 @@ export function AnimatedReveal({
   return (
     <motion.div
       initial={{
-        opacity: isMobileRevealDisabled ? 0.94 : 0,
-        y: isMobileRevealDisabled ? Math.min(y, 8) : y,
+        opacity: isMobileRevealDisabled ? 0.98 : 0,
+        y: isMobileRevealDisabled ? Math.min(y, 4) : y,
       }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once, margin: "-80px" }}
-      transition={{ duration, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration, delay, ease: smoothEase }}
       className={cn(className)}
     >
       {children}
